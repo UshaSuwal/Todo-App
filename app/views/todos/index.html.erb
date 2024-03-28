@@ -1,22 +1,26 @@
+
 <main class="container">
+    <div class="header">
+      <h1 class="text-4xl mb-20 font-semibold text-blue-800 text-center">TODO</h1>
+    </div>
 
+    <div class="flex justify-center">
+      <%= link_to "New Task",
+                  new_todo_path,
+                  class: "btn bg-blue-300 border rounded-xl p-2 hover:bg-blue-400"
+                  %>
+    </div>
+  <%= turbo_frame_tag "main" do %>
+
+    <%= turbo_frame_tag "form" do %>
+      <%= render "form", todo: Todo.new %>
+    <% end %>
+
+    <div>
+      <%= turbo_frame_tag "todos" do %>
+        <%= render @todos %>
+      <% end %>
+    </div>
   
-  <div class="header">
-    <h1 class="text-4xl mb-20 font-semibold text-blue-800 text-center">TODO</h1>
-  </div>
-
-
-  
-  <div class="flex justify-center">
-    <%= link_to "New Task",
-                new_todo_path,
-                class: "btn bg-blue-300 border rounded-xl p-2 hover:bg-blue-400"%>
-  </div>
-
-
-  
-  <div>
-    <%= render @todos %>
-  </div>
-
+  <% end %>
 </main>

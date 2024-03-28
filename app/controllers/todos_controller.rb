@@ -14,11 +14,14 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
-
     if @todo.save
-      redirect_to todos_path, notice: "Task was successfully created."
+      render turbo_stream: [
+        turbo_stream.append("todos", partial: "todo", locals: { todo: @todo }),
+        turbo_stream.remove("form"),
+        turbo_stream.prepend("main", partial: "form", locals: { todo: Todo.new })
+      ]
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -35,7 +38,10 @@ class TodosController < ApplicationController
 
   def destroy
     @todo.destroy
-    redirect_to todos_path, notice: "Task was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to todos_path, notice: "Task was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

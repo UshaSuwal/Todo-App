@@ -1,9 +1,14 @@
-<main class="container">
+<main class="flex justify-center">
   <%= link_to sanitize("&larr; Back to task"), todo_path(@todo) %>
 
   <div class="header">
     <h1>Edit task</h1>
   </div>
 
+  <%= turbo_frame_tag @todo do %>
   <%= render "form", todo: @todo %>
+  <%end%>
 </main>
+
+
+

@@ -6,7 +6,7 @@
   <% end %>
 
   <div class="flex justify-center">
-    <div class="rounded overflow-hidden shadow-lg bg-red-300 mt-10 w-3/6 ml-[-1.4rem]">
+    <div class="rounded overflow-hidden shadow-lg bg-red-300 mt-10 w-3/6 ml-[2.9rem]">
       <div class="px-6 py-8 h-full flex">
         <div class="font-bold text-xl mb-2 "><%= f.input :task, input_html: { autofocus: true } %></div>
       </div>
@@ -14,6 +14,7 @@
 
     <div class="ml-10 mt-20">
       <%= f.submit class: "btn" %>
+      <%= link_to "Cancel", todos_path, class: "ml-4 btn " %>
     </div>
   </div>
 <% end %>

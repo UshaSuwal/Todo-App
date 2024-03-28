@@ -21,7 +21,7 @@ class TodosController < ApplicationController
         turbo_stream.prepend("main", partial: "form", locals: { todo: Todo.new })
       ]
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -1,3 +1,4 @@
+<div id="form" data-turbo-frame>
 <%= simple_form_for todo, html: { class: "todo form" } do |f| %>
   <% if todo.errors.any? %>
     <div class="error-message">
@@ -6,15 +7,22 @@
   <% end %>
 
   <div class="flex justify-center">
-    <div class="rounded overflow-hidden shadow-lg bg-red-300 mt-10 w-3/6 ml-[2.9rem]">
+    <div class="rounded overflow-hidden shadow-lg bg-red-300 mt-10 w-3/6 ml-[-1.57rem]">
       <div class="px-6 py-8 h-full flex">
-        <div class="font-bold text-xl mb-2 "><%= f.input :task, input_html: { autofocus: true } %></div>
+        <div class="font-bold text-xl mb-2 "><%= f.input :task, label: false, input_html: { autofocus: true } %></div>
       </div>
     </div>
 
     <div class="ml-10 mt-20">
-      <%= f.submit class: "btn" %>
-      <%= link_to "Cancel", todos_path, class: "ml-4 btn " %>
+      <%= f.submit class: "hidden" %>
+      <%= button_tag type: "submit" do%>
+        <i class="fa-solid fa-plus"></i>
+      <%end%>
+      <%= link_to(todos_path, class: "btn ml-4") do %>
+      
+        <i class="fa-solid fa-xmark"></i>
+      <%end%>
     </div>
   </div>
 <% end %>
+</div>
